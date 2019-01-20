@@ -1,0 +1,35 @@
+<div class="main-container">
+  <div class="main-logo">
+    <div class="main-logo-title">
+      <h1> Count your <span> Points </span> </h1>
+    </div>
+
+    <div class="main-logo-subtitle">
+      &copy; SoftClub edition
+    </div>
+  </div>
+
+  <div class="main-title">
+    Add a new player to start the game
+    <ul>
+      <li *ngFor="let player of players">
+        {{player.nickname}}, {{player.email}}
+        <button (click)="deletePlayer(player)">x</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-form">
+    <form  (submit)="addPlayer(nickname.value, email.value)">
+      <div class="main-form-labels">
+        <label for="nickname">Nickname:</label>
+        <input type="text" #nickname id="nickname" class="main-input" autofocus maxlength="20" required />
+        
+        <label for="email">E-Mail:</label>
+        <input type="email" #email id="email" class="main-input" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"/>
+      </div>
+
+      <button type="submit" class="main-button">Add</button>
+    </form>
+  </div>  
+</div>
