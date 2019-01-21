@@ -1,14 +1,62 @@
-.main-logo {
-    h1 {
-        font-weight: 100;
-        line-height: 40px;
+header {
+    height: 120px;
 
-        span {
-            font-size: 60px;
-        }
+    section {
+        width: 80%;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
     }
+}
 
-    .main-logo-subtitle {
-        font-size: 14px;
-    }
+section {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+.main-title {
+    padding: 10px 0;
+}
+
+.main-button {
+    width: 50%;
+}
+
+.main-input {
+    width: calc(100% - 20px);
+}
+
+.main-button {
+    width: calc(50% + 20px);
+    margin-left: 10px;
+}
+
+.primary-button {
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 80px;
+    display: inline-block;
+    margin-right: 30px;
+    transition: all .2s;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.selected {
+    background: #dddddd;
 }
