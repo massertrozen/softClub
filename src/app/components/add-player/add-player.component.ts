@@ -1,5 +1,5 @@
 import { Input, Component } from '@angular/core';
-import { Player } from '../../models/player'; // prefer to use object for each user;
+import { Player } from 'src/app/models/player'; // prefer to use object for each user;
 
 @Component({
   selector: 'app-add-player',

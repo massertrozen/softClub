@@ -1,3 +1,5 @@
+$border: 3px solid #5a5a5a;
+
 header {
     height: 200px;
     border-bottom: 1px solid #dddddd;
@@ -18,6 +20,98 @@ header {
 section {
     width: 70%;
     margin: 0 auto;
+}
+
+.players {
+    padding: 25px 0;
+    border-bottom: 1px solid #dddddd;
+
+    section {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .main-button {
+        display: block;
+        width: 30%;
+        position:relative;
+        top: 50%; 
+        left: 50%;
+        margin-left: -15%;
+        margin-top: 40px;
+    }
+}
+
+.player-controls:nth-child(1) {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.player-controls {
+    display: inline-block;
+    margin: 25px 25px 0 0;
+    line-height: 1;
+
+    .nickname, .dart-control {
+        margin-bottom: 5px;
+    } 
+
+    .score {
+        width: 30px;
+    }
+
+    .score, .boost {
+        display: inline-block;
+    }
+
+    .boost {
+        padding: 9px;
+        background: #ffffff;
+        color: #5a5a5a;
+        border-top: $border;
+        border-left: $border; 
+        border-bottom: $border;
+        font-size: 14px;
+        transition: all .2s;
+    }
+
+    .boost:hover {        
+        background: #f0f0f0;
+        cursor: pointer;
+        transition: all .2s;        
+    }
+
+    .main-input {
+        border-radius: 3px 0 0 3px;
+    }
+
+    .boost.last {
+        border-radius: 0 50% 50% 0;
+        border-right: $border;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    label {
+        margin-top: 0;
+        display: inline-block;
+        background-color: #ddd;
+        padding: 4px 11px;
+        font-family: Arial;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    input[type="radio"]:checked+label {
+        background: #5a5a5a;
+        color: #ffffff;
+    }
+      
 }
 
 table {

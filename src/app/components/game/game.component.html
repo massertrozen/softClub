@@ -12,163 +12,79 @@
       </div>
 
       <div class="header-buttons">
-        <button class="main-button">New game</button>
+        <button class="main-button" (click)="goNewGame()">New game</button>
       </div>   
     </section>
   </header>
 
-  <section>
-    kek
-  </section>
+  <div class="players">
+    <form class="add-move" (submit)="parseData()">
+      <section>
+        <div class="player-controls">
+          <div class="nickname"></div>
+          <div class="dart-control">Dart 1</div>
+          <div class="dart-control">Dart 2</div>
+          <div class="dart-control">Dart 3</div>
+        </div>
+
+        <div *ngFor="let player of game.players" class="player-controls">
+          <div class="nickname">{{player.nickname}}</div>
+          <div class="dart-control">
+            <input class="score main-input" name="d1-value-{{player.nickname}}" maxlength="2" type="text" required />
+
+            <input type="radio" id="d1-x1-{{player.nickname}}" name="d1-boost-{{player.nickname}}" value="1" checked>
+            <label class="boost" for="d1-x1-{{player.nickname}}">1x</label>
+
+            <input type="radio" id="d1-x2-{{player.nickname}}" name="d1-boost-{{player.nickname}}" value="2">
+            <label class="boost" for="d1-x2-{{player.nickname}}">2x</label>
+            
+            <input type="radio" id="d1-x3-{{player.nickname}}" name="d1-boost-{{player.nickname}}" value="3">
+            <label class="boost last" for="d1-x3-{{player.nickname}}">3x</label>
+            
+          </div>
+          <div class="dart-control">
+            <input class="score main-input" name="d2-value-{{player.nickname}}" maxlength="2" type="text" required />
+
+            <input type="radio" id="d2-x1-{{player.nickname}}" name="d2-boost-{{player.nickname}}" value="1" checked>
+            <label class="boost" for="d2-x1-{{player.nickname}}">1x</label>
+
+            <input type="radio" id="d2-x2-{{player.nickname}}" name="d2-boost-{{player.nickname}}" value="2">
+            <label class="boost" for="d2-x2-{{player.nickname}}">2x</label>
+            
+            <input type="radio" id="d2-x3-{{player.nickname}}" name="d2-boost-{{player.nickname}}" value="3">
+            <label class="boost last" for="d2-x3-{{player.nickname}}">3x</label>
+          </div>
+          <div class="dart-control">
+            <input class="score main-input" name="d3-value-{{player.nickname}}" maxlength="2" type="text" required />
+
+            <input type="radio" id="d3-x1-{{player.nickname}}" name="d3-boost-{{player.nickname}}" value="1" checked>
+            <label class="boost" for="d3-x1-{{player.nickname}}">1x</label>
+
+            <input type="radio" id="d3-x2-{{player.nickname}}" name="d3-boost-{{player.nickname}}" value="2">
+            <label class="boost" for="d3-x2-{{player.nickname}}">2x</label>
+            
+            <input type="radio" id="d3-x3-{{player.nickname}}" name="d3-boost-{{player.nickname}}" value="3">
+            <label class="boost last" for="d3-x3-{{player.nickname}}">3x</label>
+          </div>
+        </div>      
+      </section>
+      <button type="submit" class="main-button add">Add</button>
+    </form>
+  </div>
 
   <section>
-    <table>
+    <table class="results">
       <tr>
         <td></td>
-        <td>Sherlock Holmes</td>
-        <td>Mrs. Stubbs</td>
-        <td class="winner">Jim Moriarty <i class="material-icons">accessibility_new</i></td>
+        <td *ngFor="let player of game.players">{{player.nickname}}</td>
         <td></td>
       </tr>
 
-      <tr>
-        <td>16</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
+      <tr *ngFor="let history of game.history; let i = index">
+        <td>{{game.history.length - i - 1}}</td>
+        <td *ngFor="let move of history">{{move.totalScore}}</td>
         <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>15</td>
-        <td>421</td>
-        <td>415</td>
-        <td>432</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>14</td>
-        <td>487</td>
-        <td>485</td>
-        <td>471</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>13</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>12</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>11</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>10</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>9</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>8</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>7</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>6</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>5</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>4</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>3</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>2</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td>1</td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td><i class="material-icons">info_outline</i></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>453</td>
-        <td>462</td>
-        <td>449</td>
-        <td></td>
-      </tr>
-
-      
+      </tr>      
     </table>
   </section>
-
 </div>

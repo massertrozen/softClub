@@ -1,6 +1,7 @@
 import { Input, Component, OnInit } from '@angular/core';
-import { Player } from '../../models/player'; // prefer to use object for each user;
-import { Game } from '../../models/game'; // prefer to use object for game properties;
+import { Player } from 'src/app/models/player'; // prefer to use object for each user;
+import { Game } from 'src/app/models/game'; // prefer to use object for game properties;
+import { GameStorageService } from "src/app/services/game-storage.service";
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 
@@ -13,9 +14,9 @@ export class PlayersListComponent implements OnInit {
   @Input() players: Player[]; // pass array of all player throw the components;
   isAlreadyAdded: boolean = true; // false -- opens add-player component on the current page;
   selectedPlayers: Player[] = []; // array of players, who will play the game;
-  game: Game = { type: 0, players: [], history: [] }; // type: 301/501, history: array of moves foreach player;
+  game: Game = { type: 0, players: [], history: [[]] }; // type: 301/501, history: array of moves foreach player;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private gameStorage: GameStorageService) { }
 
   // good practice to use initilization in this life-cycle method;
   ngOnInit() {
@@ -34,8 +35,6 @@ export class PlayersListComponent implements OnInit {
         $(event.currentTarget).addClass("selected");
 
         this.game.type = parseInt($(event.currentTarget).text(), 10);
-
-        console.log(this.game);
       });
 
       // if user typed nickname and submit it, add/remove selected user from array selectedPlayers
@@ -63,8 +62,10 @@ export class PlayersListComponent implements OnInit {
 
   // if game type is selected and game has >= 2 players, go to play;
   goGame() {
-    if (this.game.type > 0 && this.game.players.length > 1)
+    if (this.game.type > 0 && this.game.players.length > 1) {
+      this.gameStorage.data = this.game;
       this.router.navigate(['/game']);
+    }      
   }
 
   // allows to remove object from array of objects by key and its value;
@@ -101,10 +102,14 @@ export class PlayersListComponent implements OnInit {
     let email = $(tr).find("td:nth-child(2)").text();
     let player = { nickname, email }
     
-    if ($(tr).hasClass("selected"))
+    if ($(tr).hasClass("selected")) {
       this.selectedPlayers.unshift(player);
-    else {
+      
+      let move = { step: 0, nickname: player.nickname, d1Value: 0, d1Boost: 1, d2Value: 0, d2Boost: 1, d3Value: 0, d3Boost: 1, totalScore: 501 };
+      this.game.history[0].unshift(move);
+    } else {
       this.removeItem(this.selectedPlayers, "nickname", player.nickname);
+      this.removeItem(this.game.history[0], "nickname", player.nickname);
     }          
 
     this.game.players = this.selectedPlayers;
