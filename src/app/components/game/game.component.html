@@ -30,7 +30,7 @@
         <div *ngFor="let player of game.players" class="player-controls">
           <div class="nickname">{{player.nickname}}</div>
           <div class="dart-control">
-            <input class="score main-input" name="d1-value-{{player.nickname}}" maxlength="2" type="text" required />
+            <input class="score main-input" name="d1-value-{{player.nickname}}" maxlength="2" type="text" required pattern="[0-9]{1,2}" />
 
             <input type="radio" id="d1-x1-{{player.nickname}}" name="d1-boost-{{player.nickname}}" value="1" checked>
             <label class="boost" for="d1-x1-{{player.nickname}}">1x</label>
@@ -43,7 +43,7 @@
             
           </div>
           <div class="dart-control">
-            <input class="score main-input" name="d2-value-{{player.nickname}}" maxlength="2" type="text" required />
+            <input class="score main-input" name="d2-value-{{player.nickname}}" maxlength="2" type="text" required pattern="[0-9]{1,2}" />
 
             <input type="radio" id="d2-x1-{{player.nickname}}" name="d2-boost-{{player.nickname}}" value="1" checked>
             <label class="boost" for="d2-x1-{{player.nickname}}">1x</label>
@@ -55,7 +55,7 @@
             <label class="boost last" for="d2-x3-{{player.nickname}}">3x</label>
           </div>
           <div class="dart-control">
-            <input class="score main-input" name="d3-value-{{player.nickname}}" maxlength="2" type="text" required />
+            <input class="score main-input" name="d3-value-{{player.nickname}}" maxlength="2" type="text" required pattern="[0-9]{1,2}" />
 
             <input type="radio" id="d3-x1-{{player.nickname}}" name="d3-boost-{{player.nickname}}" value="1" checked>
             <label class="boost" for="d3-x1-{{player.nickname}}">1x</label>
